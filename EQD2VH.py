@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
-
-# Katie O'SHEA
+# Author: Katie O'Shea
+# Copyright (c) 2011-2016 Aditya Panchal: "dicompyler-core" https://github.com/dicompyler/dicompyler-core/
 
 
 from dicompylercore import dicomparser, dvh, dvhcalc
@@ -30,9 +30,6 @@ from datetime import timedelta
 
 
 window = Tk()
-tabControl = ttk.Notebook(window)
-tab1 = ttk.Frame(tabControl)
-tab2 = ttk.Frame(tabControl)
 
 class EQD2VH:
 
@@ -466,14 +463,13 @@ class EQD2VH:
 
         #plot summed re-calculated DVH in seperate window
 
-        actual_BED = plt.plot(xvalues, reshapearray, c = 'g', label = 'Revised DVH')
+        actual_BED = plt.plot(xvalues, reshapearray, linestyle='dashed', c = 'g', label = 'Revised DVH')
         actual_BED_data = actual_BED[0].get_data()
         initial_BED = plt.plot(abs(init_x), y1, c = 'b', label = 'Initial DVH')
         initial_BED_data = initial_BED[0].get_data()
         plt.legend()
-        plt.title("DVHs for " + name)
-        plt.suptitle("For OTT extension of " + ext_days + " days")
-        #plt.subtitle("For prescribed T of " + init_t + " and actual T of " + act_t)
+        plt.title("Initial and Revised Plan DVHs for " + name)
+        plt.suptitle("Treatment time extension of " + ext_days + " days")
         
         plt.ylabel("Volume (%)", fontsize=14)
         plt.xlabel("EQD2 (Gy)" , fontsize=14)
